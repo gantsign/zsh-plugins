@@ -44,7 +44,7 @@ Add the following to your Ansible playbook:
   users:
     - username: example_username
       antigen_bundles:
-        - name: kubeadm
+        - name: minikube-none
           url: gantsign/zsh-plugins
           location: minikube-none
 ```
