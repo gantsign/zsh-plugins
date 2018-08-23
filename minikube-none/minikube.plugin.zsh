@@ -55,3 +55,6 @@ __minikube_none() {
 }
 
 alias minikube=__minikube_none
+
+# So tab-completion still works
+compdef __minikube_none='minikube'
