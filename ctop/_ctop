@@ -1,0 +1,14 @@
+#compdef _ctop ctop
+
+_ctop() {
+    _arguments \
+        '-a[show active containers only]' \
+        '-connector[container connector to use (default "docker")]:connector:()' \
+        '-f[filter containers]:filter:()' \
+        '-h[display help dialog]' \
+        '-i[invert default colors]' \
+        '-r[reverse container sort order]' \
+        '-s[select container sort field]:sort by:(id name cpu mem "mem %" net pids io state)' \
+        '-scale-cpu[show cpu as % of system total]' \
+        '-v[output version information and exit]'
+}
