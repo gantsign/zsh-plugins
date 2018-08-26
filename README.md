@@ -13,8 +13,7 @@ See individual plugin directories for more information.
 ## License
 
 This software is licensed under the terms in the file named "LICENSE" in the
-root directory of this project. This project has dependencies that are under
-different licenses.
+root directory of this project.
 
 ## Author Information
 
