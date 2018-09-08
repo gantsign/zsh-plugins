@@ -1,7 +1,7 @@
 # Zsh Plugin: Pipenv
 
 Add tab completion for
-[Pipenv]https://github.com/pypa/pipenv).
+[Pipenv](https://github.com/pypa/pipenv).
 
 # Installing with [Antigen](https://github.com/zsh-users/antigen)
 
