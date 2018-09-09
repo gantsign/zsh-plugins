@@ -1,3 +1,3 @@
 if [ $commands[pipenv] ]; then
-  eval "$(pipenv --completion)"
+    eval "$(pipenv --completion)"
 fi
