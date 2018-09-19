@@ -1,7 +1,7 @@
 # Zsh Plugin: Minikube None
 
 Make [minikube](https://github.com/kubernetes/minikube) default to
-`--vm-driver=none`.
+`--vm-driver=none`. Also enables tab-completion support for Minikube.
 
 Essentially transforms:
 

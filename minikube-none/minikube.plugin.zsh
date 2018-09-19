@@ -54,7 +54,11 @@ __minikube_none() {
     fi
 }
 
-alias minikube=__minikube_none
+if [[ $commands[minikube] ]]; then
+    source <(minikube completion zsh)
 
-# So tab-completion still works
-compdef __minikube_none='minikube'
+    alias minikube=__minikube_none
+
+    # So tab-completion still works
+    compdef __minikube_none='minikube'
+fi
