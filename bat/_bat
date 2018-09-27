@@ -1,0 +1,43 @@
+#compdef _bat bat
+
+__bat_language_options() {
+    local length options IFS
+    length=$(($(bat --list-languages | grep --only-matching --color=never --extended-regexp '^R +' | wc -c)-1))
+    IFS=$'\n' options=($(bat --list-languages | cut -c "1-$length" | sed 's/^[ \t]*//;s/[ \t]*$//' | grep --color=never .))
+    compadd -V language -- "${options[@]}"
+}
+
+__bat_theme_options() {
+    local options IFS
+    IFS=$'\n' options=($(bat --list-themes --color never))
+    compadd -V theme -- "${options[@]}"
+}
+
+__bat_auto_options() {
+    compadd -V auto -- never always auto
+}
+
+_bat() {
+    local I
+    I='-h --help -V --version'
+
+    arguments=(
+        "($I -l --language)"{-l,--language}'[Explicitly set the language for syntax highlighting.]:language:__bat_language_options'
+        "($I --list-themes)--list-languages[Display a list of supported languages for syntax highlighting.]"
+        "($I)--theme[Set the theme for syntax highlighting.]:theme:__bat_theme_options"
+        "($I --list-languages)--list-themes[Display a list of supported themes for syntax highlighting.]"
+        "($I -p --plain -n --number)--style[Configure which elements to display in addition to the file contents.]:style:()"
+        "($I --style -n --number -p --plain)"{-p,--plain}'[Only show plain style, no decorations.]'
+        "($I --style -p --plain -n --number)"{-n,--number}'[Only show line numbers, no other decorations.]'
+        "($I)--line-range[Only print the specified range of lines for each file.]:range:()"
+        "($I)--color[Specify when to use colored output.]:color:__bat_auto_options"
+        "($I)--decorations[Specify when to use the decorations that have been specified via '--style'.]:decoration:__bat_auto_options"
+        "($I)--paging[Specify when to use the pager.]:page:__bat_auto_options"
+        "($I)--wrap[Specify the text-wrapping mode.]:wrap:__bat_auto_options"
+        "($I)--tabs[Sets the tab width.]:tab:()"
+        "(- :)"{-h,--help}'[Print the help message.]'
+        "(- :)"{-V,--version}'[Show version information.]'
+        '*::file:_files'
+    )
+    _arguments $arguments
+}
