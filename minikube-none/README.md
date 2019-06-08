@@ -20,7 +20,7 @@ mkdir -p $HOME/.kube
 touch $HOME/.kube/config
 export KUBECONFIG=$HOME/.kube/config
 
-sudo --preserve-env minikube <args> start --vm-driver=none <args>
+sudo --preserve-env minikube --vm-driver=none <args> start --extra-config=kubelet.resolv-conf=/run/systemd/resolve/resolv.conf <args>
 ```
 
 Useful if you're already running in a virtual machine (VM) with Docker and can't

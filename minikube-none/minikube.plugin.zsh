@@ -8,6 +8,11 @@ __minikube_none() {
     while [[ $# -gt 0 ]]; do
         if [[ "$command" == '' ]]; then
             case "$1" in
+                --vm-driver*)
+                    has_vm_driver='true'
+                    pre_args+=("$1")
+                    shift
+                ;;
                 -b|--bootstrapper|--log_backtrace_at|--log_dir|--loglevel|-p|--profile|--stderrthreshold|-v|--v|--vmodule)
                     pre_args+=("$1")
                     shift
@@ -47,8 +52,12 @@ __minikube_none() {
         touch $HOME/.kube/config
         export KUBECONFIG=$HOME/.kube/config
 
-        (set -x ; sudo --preserve-env minikube "${pre_args[@]}" "$command" \
-            --vm-driver=none "${post_args[@]}")
+        if [ -f /run/systemd/resolve/resolv.conf ]; then
+            post_args=('--extra-config=kubelet.resolv-conf=/run/systemd/resolve/resolv.conf' "${post_args[@]}")
+        fi
+
+        (set -x ; sudo --preserve-env minikube --vm-driver=none \
+            "${pre_args[@]}" "$command" "${post_args[@]}")
     else
         minikube "${pre_args[@]}" "$command" "${post_args[@]}"
     fi
