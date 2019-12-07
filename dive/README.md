@@ -1,7 +1,8 @@
 # Zsh Plugin: dive
 
-Add aliases for [dive](https://github.com/wagoodman/dive) a tool for exploring
-each layer in a docker image.
+Adds tab-completion for [dive](https://github.com/wagoodman/dive) a tool for
+exploring each layer in a Docker image. If `dive` is not installed adds an alias
+for running `dive` using Docker.
 
 Depends on the
 [oh-my-zsh docker plugin](https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/docker/_docker).
