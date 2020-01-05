@@ -1,7 +1,7 @@
 #compdef _dive dive
 
 __dive_complete_images() {
-    images=("${(@f)$(docker images --filter dangling=false --format 'table {{.Repository}}{{if ne .Tag "<none>"}}\:{{.Tag}}{{end}}' | tail --lines=+2 | sort --key=1 --version-sort --unique)}")
+    images=("${(@f)$(docker images --filter dangling=false --format '{{.Repository}}{{if ne .Tag "<none>"}}\:{{.Tag}}{{end}}' | sort --key=1 --version-sort --unique)}")
     _describe -t docker-images "docker images" images
 }
 
