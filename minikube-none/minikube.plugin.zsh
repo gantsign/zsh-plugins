@@ -68,7 +68,7 @@ if (( $+commands[minikube] )); then
     # If the completion file does not exist, generate it and then source it
     # Otherwise, source it and regenerate in the background
     if [[ ! -f "$ZSH_CACHE_DIR/completions/_minikube" ]]; then
-        mkdir -p "$ZSH_CACHE_DIR"
+        mkdir -p "$ZSH_CACHE_DIR/completions"
         minikube completion zsh | tee "$ZSH_CACHE_DIR/completions/_minikube" >/dev/null
         source "$ZSH_CACHE_DIR/completions/_minikube"
     else
